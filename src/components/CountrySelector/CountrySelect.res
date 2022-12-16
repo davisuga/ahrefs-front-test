@@ -15,6 +15,11 @@ let make = (~className="", ~country: option<string>, ~onChange: string => unit) 
     ->Option.map(option => option.label)
     ->Option.getWithDefault("Select a country")
 
+  let onChangeSelect = (country: ReactSelect.opt) => {
+    onChange(country.value)
+    setIsOpen(_ => false)
+  }
+
   <div className={"country-select-container " ++ className}>
     <Dropdown
       isOpen
@@ -30,22 +35,20 @@ let make = (~className="", ~country: option<string>, ~onChange: string => unit) 
           isSearchable={true}
           menuIsOpen=true
           autoFocus=true
-          onChange={country => {
-            onChange(country.value)
-            setIsOpen(_ => false)
-          }}
+          onChange=onChangeSelect
+          placeholder="Search"
           className={"popup"}
           classNamePrefix="react-select"
           components={{
             \"IndicatorSeparator": () => React.null,
             \"DropdownIndicator": () => React.null,
             \"Option": props => {
-              <div
-                className={"country-option " ++ (props.isFocused ? "country-option-selected" : "")}
-                onClick={props.innerProps.onClick}>
-                <span className={`fi fi-${props.data.value}`} />
-                <Text> props.data.label </Text>
-              </div>
+              <CountryItem
+                isFocused=props.isFocused
+                onClick=props.innerProps.onClick
+                label=props.data.label
+                value=props.data.value
+              />
             },
           }}
           styles={{

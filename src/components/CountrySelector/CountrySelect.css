@@ -35,7 +35,8 @@
   padding-top: 8px;
 }
 
-.country-option:nth-child(6) {
+.country-option:nth-child(6),
+.country-option:last-child {
   padding-bottom: 8px;
 }
 
