@@ -1,0 +1,51 @@
+.country-select-container {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.popup {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  font-size: 14px;
+  color: #333333;
+  line-height: 18px;
+  min-width: 230px;
+}
+
+.internal-select-container {
+  min-width: 230px;
+}
+* {
+  font-family: sans-serif, "Arial MT" !important;
+}
+.react-select__option .react-select__option--is-focused {
+  background-color: #000;
+}
+
+.country-option-selected {
+  background-color: #f0f0f0;
+}
+.country-option:nth-child(n + 7) {
+  display: none;
+}
+.country-option:first-child {
+  padding-top: 8px;
+}
+
+.country-option:nth-child(6) {
+  padding-bottom: 8px;
+}
+
+.country-option {
+  padding: 4px 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.fi {
+  max-height: 10px;
+}
