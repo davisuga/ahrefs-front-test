@@ -1,7 +1,27 @@
 open React
 open Belt
+open Utils
+
 %%raw(`import "/node_modules/flag-icons/css/flag-icons.min.css"`)
 %%raw(`import './CountrySelect.css'`)
+
+module Styles = {
+  open ReactDOMStyle
+  let menu = make()
+  let menuList = make(~padding="0", ())
+  let control = make(
+    ~border="0px solid #EBEBEB ",
+    ~borderBottomWidth="1px",
+    ~display="flex",
+    ~flexDirection="row-reverse",
+    ~height="35px",
+    ~paddingLeft="10px",
+    ~columnGap="6px",
+    (),
+  )
+  let option = make(~background="#fff", ())
+  let valueContainer = make(~padding="0px", ())
+}
 
 @react.component
 let make = (~className="", ~country: option<string>, ~onChange: string => unit) => {
@@ -52,22 +72,11 @@ let make = (~className="", ~country: option<string>, ~onChange: string => unit) 
             },
           }}
           styles={{
-            menu: _ => ReactDOMStyle.make(),
-            menuList: base => base->ReactDOMStyle.combine(ReactDOMStyle.make(~padding="0", ())),
-            control: _ =>
-              ReactDOMStyle.make(
-                ~border="0px solid #EBEBEB ",
-                ~borderBottomWidth="1px",
-                ~display="flex",
-                ~flexDirection="row-reverse",
-                ~height="35px",
-                ~paddingLeft="10px",
-                ~columnGap="6px",
-                (),
-              ),
-            option: base => base->ReactDOMStyle.combine(ReactDOMStyle.make(~background="#fff", ())),
-            valueContainer: base =>
-              base->ReactDOMStyle.combine(ReactDOMStyle.make(~padding="0px", ())),
+            menu: _ => Styles.menu,
+            menuList: combineStyle(Styles.menuList),
+            control: _ => Styles.control,
+            option: combineStyle(Styles.option),
+            valueContainer: combineStyle(Styles.valueContainer),
           }}
         />
       </div>
