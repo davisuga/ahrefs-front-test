@@ -41,7 +41,7 @@ let make = (~className="", ~country: option<string>, ~onChange: string => unit) 
           classNamePrefix="react-select"
           components={{
             \"IndicatorSeparator": () => React.null,
-            \"DropdownIndicator": () => React.null,
+            \"DropdownIndicator": () => <Magnify />,
             \"Option": props => {
               <CountryItem
                 isFocused=props.isFocused
@@ -55,8 +55,19 @@ let make = (~className="", ~country: option<string>, ~onChange: string => unit) 
             menu: _ => ReactDOMStyle.make(),
             menuList: base => base->ReactDOMStyle.combine(ReactDOMStyle.make(~padding="0", ())),
             control: _ =>
-              ReactDOMStyle.make(~border="0px solid #EBEBEB ", ~borderBottomWidth="1px", ()),
+              ReactDOMStyle.make(
+                ~border="0px solid #EBEBEB ",
+                ~borderBottomWidth="1px",
+                ~display="flex",
+                ~flexDirection="row-reverse",
+                ~height="35px",
+                ~paddingLeft="10px",
+                ~columnGap="6px",
+                (),
+              ),
             option: base => base->ReactDOMStyle.combine(ReactDOMStyle.make(~background="#fff", ())),
+            valueContainer: base =>
+              base->ReactDOMStyle.combine(ReactDOMStyle.make(~padding="0px", ())),
           }}
         />
       </div>
