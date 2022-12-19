@@ -48,5 +48,7 @@
 }
 
 .fi {
-  max-height: 10px;
+  height: 10px;
+  width: 14px;
+  min-width: 14px;
 }
