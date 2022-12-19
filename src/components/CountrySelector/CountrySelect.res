@@ -40,6 +40,19 @@ let make = (~className="", ~country: option<string>, ~onChange: string => unit) 
     setIsOpen(_ => false)
   }
 
+  React.useEffect0(() => {
+    let listener = Window.addEventListener(#keydown, event => {
+      switch event.code {
+      | #Escape => setIsOpen(_ => false)
+      | #Enter => setIsOpen(_ => true)
+      | #Backspace => onChange("")
+      | _ => ()
+      }
+    })
+
+    Some(() => Window.removeEventListener(#keydown, listener))
+  })
+
   <div className={"country-select-container " ++ className}>
     <Dropdown
       isOpen
